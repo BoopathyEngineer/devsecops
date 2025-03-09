@@ -120,8 +120,15 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           load: true
-      - name: Force Trivy DB Update
-        run: trivy --download-db-only
+      - name: Install Trivy
+        run: |
+          sudo apt update
+          sudo apt install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux-64bit.tar.gz
+          tar -xvf trivy_Linux-64bit.tar.gz
+          sudo mv trivy /usr/local/bin/
+            - name: Force Trivy DB Update
+              run: trivy --download-db-only
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
