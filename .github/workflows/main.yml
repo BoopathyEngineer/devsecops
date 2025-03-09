@@ -123,8 +123,9 @@ jobs:
       - name: Install Trivy
         run: |
           sudo apt update && sudo apt install -y wget
-          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux-64bit.tar.gz
-          tar -xvf trivy_Linux-64bit.tar.gz
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.60.0/trivy_0.60.0_FreeBSD-32bit.tar.gz.sig
+          #https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux-64bit.tar.gz
+          tar -xvf trivy_0.60.0_FreeBSD-32bit.tar.gz.sig
           sudo mv trivy /usr/local/bin/
 
       - name: Force Trivy DB Update
